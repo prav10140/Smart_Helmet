@@ -8,6 +8,7 @@ import MapComponent from "./components/MapComponent"
 import AlertLog from "./components/AlertLog"
 import SOSButton from "./components/SOSButton"
 import EmergencyModal from "./components/EmergencyModal"
+import ConnectionStatus from "./components/ConnectionStatus"
 import { Shield, AlertTriangle, Zap, MapPin } from "lucide-react"
 
 const AppContainer = styled.div`
@@ -44,9 +45,20 @@ const LastUpdate = styled.div`
   margin-bottom: 1rem;
 `
 
+const FirebaseStatus = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+`
+
 export default function Home() {
   const theme = useTheme()
-  const { currentStatus } = useAlert()
+  const { currentStatus, isFirebaseConnected } = useAlert()
 
   const getStatusDescription = (type, status) => {
     switch (type) {
@@ -70,7 +82,12 @@ export default function Home() {
   return (
     <AppContainer theme={theme}>
       <Header />
+      <ConnectionStatus />
       <MainContent>
+        <FirebaseStatus theme={theme}>
+          {isFirebaseConnected ? "🔥 Real-time Firebase connection active" : "⚠️ Using API fallback mode"}
+        </FirebaseStatus>
+
         {currentStatus.lastUpdate && (
           <LastUpdate theme={theme}>Last updated: {new Date(currentStatus.lastUpdate).toLocaleString()}</LastUpdate>
         )}
