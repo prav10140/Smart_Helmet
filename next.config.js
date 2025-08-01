@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   compiler: {
     styledComponents: true,
   },
@@ -15,8 +12,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Disable static optimization for dynamic imports
   output: "standalone",
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
