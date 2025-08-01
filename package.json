@@ -16,7 +16,8 @@
     "styled-components": "^6.1.0",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
-    "firebase": "^10.7.0"
+    "firebase": "^10.7.0",
+    "lucide-react": "^0.263.0"
   },
   "devDependencies": {
     "eslint": "^8.0.0",
